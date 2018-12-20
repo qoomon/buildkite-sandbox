@@ -1,9 +1,27 @@
 steps:
+  - label: "merge master branch"
+    command:
+      - echo git 
+      - echo git merge master
+    branches: "feature/*"
+  
+  - wait: ~
+    continue_on_failure: true
+  
   - label: 'pwd'
     command: pwd
     
-  - label: 'branch updater'
-    command: | 
-              for branch in $(git ls-remote --heads origin | sed 's|^.*refs/heads/||'); do 
-                echo \$branch
-              done
+  - trigger: sandbox
+    label: "trigger feature branches"
+    build:
+      message: "$BUILDKITE_BRANCH branch was updated"
+      branch: "feature/bigone"
+    async: true   
+    branches: "master"
+      
+  - label: "update master branch"
+    command: 
+      - echo git checkout master
+      - echo git merge $BUILDKITE_BRANCH
+      - echo git push origin master
+    branches: "feature/*"
