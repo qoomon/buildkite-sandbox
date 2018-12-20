@@ -1,9 +1,30 @@
 steps:
+  - label: "Merge Master Branch"
+    command:
+      - echo git remote set-branches origin master
+      - echo git fetch --shallow-since=$(date -v-100d +%Y-%m-%d)
+      - echo git merge master
+    branches: "feature/*"
+  
+  - wait: ~
+    continue_on_failure: true
+  
   - label: 'pwd'
     command: pwd
     
-  - label: 'branch updater'
-    command: | 
-              for branch in $(git ls-remote --heads origin | sed 's|^.*refs/heads/||'); do 
-                echo $branch
-              done
+  - trigger: sandbox
+    label: "Feature Branch Trigger"
+    build:
+      message: "$BUILDKITE_BRANCH branch trigger"
+      branch: "feature/bigone"
+    async: true   
+    branches: "master"
+      
+  - label: "Merge into Master Branch"
+    command: 
+      - echo git remote set-branches origin master
+      - echo git fetch --shallow-since=$(date -v-100d +%Y-%m-%d)
+      - echo git checkout master
+      - echo git merge $BUILDKITE_BRANCH
+      - echo git push origin master
+    branches: "feature/*"
