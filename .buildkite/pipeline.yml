@@ -1,11 +1,11 @@
 steps:
-  - label: :playground: pwd
+  - label: ':playground: pwd'
     command: pwd
 
 steps:
-  - label: :playground: git branches
+  - label: ':playground: git branches'
     command: git branch
     
 steps:
-  - label: :playground: touch it
+  - label: ':playground: touch it'
     command: touch /tmp/buildkite
