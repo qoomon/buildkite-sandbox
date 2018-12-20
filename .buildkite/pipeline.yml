@@ -5,8 +5,8 @@ steps:
   - label: ':playground: git branches'
     command: git branch
     
- - label: ':playground: git branches'
+  - label: ':playground: git branches'
     command: git reflog
     
- - label: ':playground: touch it'
+  - label: ':playground: touch it'
     command: touch /tmp/buildkite
