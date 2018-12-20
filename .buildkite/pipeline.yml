@@ -2,11 +2,8 @@ steps:
   - label: 'pwd'
     command: pwd
     
-  - label: 'git remote branches branch'
-    command: git branch -r
-    
-  - label: 'git reflog'
-    command: git reflog
-    
-  - label: ':playground: touch it'
-    command: touch /tmp/buildkite
+  - label: 'branch updater'
+    command: | 
+              for branch in $(git ls-remote --heads origin | sed 's|^.*refs/heads/||'); do 
+                echo \$branch
+              done
