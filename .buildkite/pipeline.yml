@@ -1,11 +1,11 @@
 steps:
-  - label: ':playground: pwd'
+  - label: 'pwd'
     command: pwd
     
-  - label: ':playground: git branches'
-    command: git branch
+  - label: 'git remote branches branch'
+    command: git branch -r
     
-  - label: ':playground: git branches'
+  - label: 'git reflog'
     command: git reflog
     
   - label: ':playground: touch it'
