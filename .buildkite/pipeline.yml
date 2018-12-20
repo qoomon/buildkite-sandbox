@@ -12,9 +12,9 @@ steps:
     command: pwd
     
   - trigger: sandbox
-    label: "trigger feature branches"
+    label: "Feature Branche Trigger"
     build:
-      message: "$BUILDKITE_BRANCH branch was updated"
+      message: "$BUILDKITE_BRANCH branch trigger"
       branch: "feature/bigone"
     async: true   
     branches: "master"
