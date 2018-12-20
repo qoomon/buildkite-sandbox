@@ -1,5 +1,5 @@
 steps:
-  - label: "merge master branch"
+  - label: "Merge Master Branch"
     command:
       - echo git remote set-branches origin master
       - echo git fetch --shallow-since=$(date -v-100d +%Y-%m-%d)
@@ -20,7 +20,7 @@ steps:
     async: true   
     branches: "master"
       
-  - label: "Master Branch Updater"
+  - label: "Merge into Master Branch"
     command: 
       - echo git remote set-branches origin master
       - echo git fetch --shallow-since=$(date -v-100d +%Y-%m-%d)
