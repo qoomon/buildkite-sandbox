@@ -6,8 +6,7 @@ steps:
       - echo git merge master
     branches: "feature/*"
   
-  - wait: ~
-    continue_on_failure: true
+  - wait
   
   - label: 'pwd'
     command: pwd
