@@ -1,3 +1,11 @@
 steps:
   - label: Example Test
-    command: echo $PWD && ls
+    command: pwd
+
+steps:
+  - label: Example Test
+    command: git branch
+    
+steps:
+  - label: Example Test
+    command: touch /tmp/buildkite
