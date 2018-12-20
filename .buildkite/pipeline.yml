@@ -22,6 +22,7 @@ steps:
       
   - label: "Merge into Master Branch"
     command: 
+      - git branch
       - git remote set-branches origin master
       - git fetch --shallow-since=$(date -v-100d +%Y-%m-%d)
       - git checkout master
