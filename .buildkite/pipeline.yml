@@ -1,7 +1,8 @@
 steps:
   - label: "merge master branch"
     command:
-      - echo git 
+      - echo git remote set-branches origin master
+      - echo git fetch --shallow-since=$(date -v-100d +%Y-%m-%d)
       - echo git merge master
     branches: "feature/*"
   
@@ -12,15 +13,17 @@ steps:
     command: pwd
     
   - trigger: sandbox
-    label: "Feature Branche Trigger"
+    label: "Feature Branch Trigger"
     build:
       message: "$BUILDKITE_BRANCH branch trigger"
       branch: "feature/bigone"
     async: true   
     branches: "master"
       
-  - label: "update master branch"
+  - label: "Master Branch Updater"
     command: 
+      - echo git remote set-branches origin master
+      - echo git fetch --shallow-since=$(date -v-100d +%Y-%m-%d)
       - echo git checkout master
       - echo git merge $BUILDKITE_BRANCH
       - echo git push origin master
