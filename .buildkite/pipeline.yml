@@ -3,7 +3,7 @@ steps:
     command: pwd
     
   - label: 'branch updater'
-    command: -| 
+    command: | 
               for branch in $(git ls-remote --heads origin | sed 's|^.*refs/heads/||'); do 
                 echo $branch
               done
